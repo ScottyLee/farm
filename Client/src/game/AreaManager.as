@@ -48,30 +48,40 @@ package game
 			
 			
 			this._bg = new Image();
-			_bg.load("/Users/admin/farm/Service/farm/public/images/BG.jpg");
 			_bg.x = 0;
 			_bg.y = 0;
 			_Display.addElement(_bg);
 
 		}
 		
+		public function get StorageVolume():int
+		{
+			return _StorageVolume;
+		}
+
+		public function set StorageVolume(value:int):void
+		{
+			_StorageVolume = value;
+		}
+
 		private function onServiceResult(event:ResultEvent):void
 		{	
 			this._AreaData = AreaData(_Resp.token.result);
 			this._AreaTypes = _AreaData.AreaType.ItemType;
 			this._AreaItems = _AreaData.Field.AreaItem;
 			this._CollectMode = false;
+			this._bg.load(this._AreaData.background);
 			this._ToolBox = new ToolBox(this, _Display, _AreaData.ToolBox);
 			this._ToolBox.x = 0;
 			this._ToolBox.y = 0;
 			this._ToolBox.autoLayout = true
 			this._Display.addElement(_ToolBox);
-			
 			this.initTypes();
 			this.initItems();
 			//drawArea();
+			this._ToolBox.updateStorage(int(_AreaData.storagevolume))
 			this._Service.removeEventListener(ResultEvent.RESULT, onServiceResult);
-
+			
 		}
 		
 		private function initTypes():void
@@ -167,9 +177,11 @@ package game
 			this._Service.removeEventListener(ResultEvent.RESULT, onCollectDone);
 			var _Storage:Storage = Storage(this._Resp.token.result);
 			this._StorageVolume = int(_Storage.volume);
+			this._ToolBox.updateStorage(int(_Storage.volume));
 			var _ItemToDestroy:AreaItem = AreaItem(this._ItemDic[_Storage.lastitem]);
 			this._Display.removeElement(_ItemToDestroy);
 			delete this._ItemDic[_Storage.lastitem];// вся надежда на сборщики мусора
+			
 		}
 		
 		protected function collect(ItemId:int):void

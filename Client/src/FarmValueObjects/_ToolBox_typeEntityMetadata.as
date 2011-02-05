@@ -22,12 +22,12 @@ internal class _ToolBox_typeEntityMetadata extends com.adobe.fiber.valueobjects.
 {
     private static var emptyArray:Array = new Array();
 
-    model_internal static var allProperties:Array = new Array("IncButton", "DecButton", "CollectButton");
+    model_internal static var allProperties:Array = new Array("IncButton", "DecButton", "CollectButton", "StorageButton");
     model_internal static var allAssociationProperties:Array = new Array();
-    model_internal static var allRequiredProperties:Array = new Array("IncButton", "DecButton", "CollectButton");
-    model_internal static var allAlwaysAvailableProperties:Array = new Array("IncButton", "DecButton", "CollectButton");
+    model_internal static var allRequiredProperties:Array = new Array("IncButton", "DecButton", "CollectButton", "StorageButton");
+    model_internal static var allAlwaysAvailableProperties:Array = new Array("IncButton", "DecButton", "CollectButton", "StorageButton");
     model_internal static var guardedProperties:Array = new Array();
-    model_internal static var dataProperties:Array = new Array("IncButton", "DecButton", "CollectButton");
+    model_internal static var dataProperties:Array = new Array("IncButton", "DecButton", "CollectButton", "StorageButton");
     model_internal static var derivedProperties:Array = new Array();
     model_internal static var collectionProperties:Array = new Array();
     model_internal static var collectionBaseMap:Object;
@@ -50,6 +50,11 @@ internal class _ToolBox_typeEntityMetadata extends com.adobe.fiber.valueobjects.
     model_internal var _CollectButtonValidator:com.adobe.fiber.styles.StyleValidator;
     model_internal var _CollectButtonIsValidCacheInitialized:Boolean = false;
     model_internal var _CollectButtonValidationFailureMessages:Array;
+    
+    model_internal var _StorageButtonIsValid:Boolean;
+    model_internal var _StorageButtonValidator:com.adobe.fiber.styles.StyleValidator;
+    model_internal var _StorageButtonIsValidCacheInitialized:Boolean = false;
+    model_internal var _StorageButtonValidationFailureMessages:Array;
 
     model_internal var _instance:_Super_ToolBox_type;
     model_internal static var _nullStyle:com.adobe.fiber.styles.Style = new com.adobe.fiber.styles.Style();
@@ -64,6 +69,7 @@ internal class _ToolBox_typeEntityMetadata extends com.adobe.fiber.valueobjects.
             model_internal::dependentsOnMap["IncButton"] = new Array();
             model_internal::dependentsOnMap["DecButton"] = new Array();
             model_internal::dependentsOnMap["CollectButton"] = new Array();
+            model_internal::dependentsOnMap["StorageButton"] = new Array();
 
             // collection base map
             model_internal::collectionBaseMap = new Object()
@@ -85,6 +91,11 @@ internal class _ToolBox_typeEntityMetadata extends com.adobe.fiber.valueobjects.
         model_internal::_CollectButtonValidator.requiredFieldError = "CollectButton is required";
         //model_internal::_CollectButtonValidator.source = model_internal::_instance;
         //model_internal::_CollectButtonValidator.property = "CollectButton";
+        model_internal::_StorageButtonValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForStorageButton);
+        model_internal::_StorageButtonValidator.required = true;
+        model_internal::_StorageButtonValidator.requiredFieldError = "StorageButton is required";
+        //model_internal::_StorageButtonValidator.source = model_internal::_instance;
+        //model_internal::_StorageButtonValidator.property = "StorageButton";
     }
 
     override public function getEntityName():String
@@ -311,6 +322,12 @@ internal class _ToolBox_typeEntityMetadata extends com.adobe.fiber.valueobjects.
         return true;
     }
 
+    [Bindable(event="propertyChange")]
+    public function get isStorageButtonAvailable():Boolean
+    {
+        return true;
+    }
+
 
     /**
      * derived property recalculation
@@ -337,6 +354,14 @@ internal class _ToolBox_typeEntityMetadata extends com.adobe.fiber.valueobjects.
         {
             model_internal::_instance.model_internal::_doValidationCacheOfCollectButton = null;
             model_internal::calculateCollectButtonIsValid();
+        }
+    }
+    public function invalidateDependentOnStorageButton():void
+    {
+        if (model_internal::_StorageButtonIsValidCacheInitialized )
+        {
+            model_internal::_instance.model_internal::_doValidationCacheOfStorageButton = null;
+            model_internal::calculateStorageButtonIsValid();
         }
     }
 
@@ -645,6 +670,106 @@ internal class _ToolBox_typeEntityMetadata extends com.adobe.fiber.valueobjects.
         }
     }
 
+    [Bindable(event="propertyChange")]   
+    public function get StorageButtonStyle():com.adobe.fiber.styles.Style
+    {
+        return model_internal::_nullStyle;
+    }
+
+    public function get StorageButtonValidator() : StyleValidator
+    {
+        return model_internal::_StorageButtonValidator;
+    }
+
+    model_internal function set _StorageButtonIsValid_der(value:Boolean):void 
+    {
+        var oldValue:Boolean = model_internal::_StorageButtonIsValid;         
+        if (oldValue !== value)
+        {
+            model_internal::_StorageButtonIsValid = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "StorageButtonIsValid", oldValue, value));
+        }                             
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get StorageButtonIsValid():Boolean
+    {
+        if (!model_internal::_StorageButtonIsValidCacheInitialized)
+        {
+            model_internal::calculateStorageButtonIsValid();
+        }
+
+        return model_internal::_StorageButtonIsValid;
+    }
+
+    model_internal function calculateStorageButtonIsValid():void
+    {
+        var valRes:ValidationResultEvent = model_internal::_StorageButtonValidator.validate(model_internal::_instance.StorageButton)
+        model_internal::_StorageButtonIsValid_der = (valRes.results == null);
+        model_internal::_StorageButtonIsValidCacheInitialized = true;
+        if (valRes.results == null)
+             model_internal::StorageButtonValidationFailureMessages_der = emptyArray;
+        else
+        {
+            var _valFailures:Array = new Array();
+            for (var a:int = 0 ; a<valRes.results.length ; a++)
+            {
+                _valFailures.push(valRes.results[a].errorMessage);
+            }
+            model_internal::StorageButtonValidationFailureMessages_der = _valFailures;
+        }
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get StorageButtonValidationFailureMessages():Array
+    {
+        if (model_internal::_StorageButtonValidationFailureMessages == null)
+            model_internal::calculateStorageButtonIsValid();
+
+        return _StorageButtonValidationFailureMessages;
+    }
+
+    model_internal function set StorageButtonValidationFailureMessages_der(value:Array) : void
+    {
+        var oldValue:Array = model_internal::_StorageButtonValidationFailureMessages;
+
+        var needUpdate : Boolean = false;
+        if (oldValue == null)
+            needUpdate = true;
+    
+        // avoid firing the event when old and new value are different empty arrays
+        if (!needUpdate && (oldValue !== value && (oldValue.length > 0 || value.length > 0)))
+        {
+            if (oldValue.length == value.length)
+            {
+                for (var a:int=0; a < oldValue.length; a++)
+                {
+                    if (oldValue[a] !== value[a])
+                    {
+                        needUpdate = true;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                needUpdate = true;
+            }
+        }
+
+        if (needUpdate)
+        {
+            model_internal::_StorageButtonValidationFailureMessages = value;   
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "StorageButtonValidationFailureMessages", oldValue, value));
+            // Only execute calculateIsValid if it has been called before, to update the validationFailureMessages for
+            // the entire entity.
+            if (model_internal::_instance.model_internal::_cacheInitialized_isValid)
+            {
+                model_internal::_instance.model_internal::isValid_der = model_internal::_instance.model_internal::calculateIsValid();
+            }
+        }
+    }
+
 
      /**
      * 
@@ -681,6 +806,10 @@ internal class _ToolBox_typeEntityMetadata extends com.adobe.fiber.valueobjects.
             case("CollectButton"):
             {
                 return CollectButtonValidationFailureMessages;
+            }
+            case("StorageButton"):
+            {
+                return StorageButtonValidationFailureMessages;
             }
             default:
             {

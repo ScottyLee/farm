@@ -19,9 +19,11 @@ ActiveRecord::Schema.define(:version => 20110203123458) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "storage"
+    t.string   "background"
     t.string   "inc_button"
     t.string   "dec_button"
     t.string   "collect_button"
+    t.string   "storage_button"
   end
 
   create_table "item_types", :force => true do |t|

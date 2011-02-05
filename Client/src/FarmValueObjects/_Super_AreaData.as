@@ -43,6 +43,7 @@ public class _Super_AreaData extends flash.events.EventDispatcher implements com
         FarmValueObjects.IncButton_type.initRemoteClassAliasSingleChild();
         FarmValueObjects.DecButton_type.initRemoteClassAliasSingleChild();
         FarmValueObjects.CollectButton_type.initRemoteClassAliasSingleChild();
+        FarmValueObjects.StorageButton_type.initRemoteClassAliasSingleChild();
     }
 
     model_internal var _dminternal_model : _AreaDataEntityMetadata;
@@ -50,6 +51,8 @@ public class _Super_AreaData extends flash.events.EventDispatcher implements com
     /**
      * properties
      */
+    private var _internal_background : String;
+    private var _internal_storagevolume : String;
     private var _internal_Field : FarmValueObjects.Field_type;
     private var _internal_AreaType : FarmValueObjects.AreaType_type;
     private var _internal_ToolBox : FarmValueObjects.ToolBox_type;
@@ -69,6 +72,8 @@ public class _Super_AreaData extends flash.events.EventDispatcher implements com
         _model = new _AreaDataEntityMetadata(this);
 
         // Bind to own data properties for cache invalidation triggering
+        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "background", model_internal::setterListenerBackground));
+        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "storagevolume", model_internal::setterListenerStoragevolume));
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "Field", model_internal::setterListenerField));
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "AreaType", model_internal::setterListenerAreaType));
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "ToolBox", model_internal::setterListenerToolBox));
@@ -78,6 +83,18 @@ public class _Super_AreaData extends flash.events.EventDispatcher implements com
     /**
      * data property getters
      */
+
+    [Bindable(event="propertyChange")]
+    public function get background() : String
+    {
+        return _internal_background;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get storagevolume() : String
+    {
+        return _internal_storagevolume;
+    }
 
     [Bindable(event="propertyChange")]
     public function get Field() : FarmValueObjects.Field_type
@@ -100,6 +117,26 @@ public class _Super_AreaData extends flash.events.EventDispatcher implements com
     /**
      * data property setters
      */
+
+    public function set background(value:String) : void
+    {
+        var oldValue:String = _internal_background;
+        if (oldValue !== value)
+        {
+            _internal_background = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "background", oldValue, _internal_background));
+        }
+    }
+
+    public function set storagevolume(value:String) : void
+    {
+        var oldValue:String = _internal_storagevolume;
+        if (oldValue !== value)
+        {
+            _internal_storagevolume = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "storagevolume", oldValue, _internal_storagevolume));
+        }
+    }
 
     public function set Field(value:FarmValueObjects.Field_type) : void
     {
@@ -143,6 +180,16 @@ public class _Super_AreaData extends flash.events.EventDispatcher implements com
      *  - the validity of the property (and the containing entity) if the given data property is required.
      */
 
+    model_internal function setterListenerBackground(value:flash.events.Event):void
+    {
+        _model.invalidateDependentOnBackground();
+    }
+
+    model_internal function setterListenerStoragevolume(value:flash.events.Event):void
+    {
+        _model.invalidateDependentOnStoragevolume();
+    }
+
     model_internal function setterListenerField(value:flash.events.Event):void
     {
         _model.invalidateDependentOnField();
@@ -179,6 +226,16 @@ public class _Super_AreaData extends flash.events.EventDispatcher implements com
         var validationFailureMessages:Array = new Array();
 
         var propertyValidity:Boolean = true;
+        if (!_model.backgroundIsValid)
+        {
+            propertyValidity = false;
+            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_backgroundValidationFailureMessages);
+        }
+        if (!_model.storagevolumeIsValid)
+        {
+            propertyValidity = false;
+            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_storagevolumeValidationFailureMessages);
+        }
         if (!_model.FieldIsValid)
         {
             propertyValidity = false;
@@ -273,6 +330,60 @@ public class _Super_AreaData extends flash.events.EventDispatcher implements com
         }
     }
 
+    model_internal var _doValidationCacheOfBackground : Array = null;
+    model_internal var _doValidationLastValOfBackground : String;
+
+    model_internal function _doValidationForBackground(valueIn:Object):Array
+    {
+        var value : String = valueIn as String;
+
+        if (model_internal::_doValidationCacheOfBackground != null && model_internal::_doValidationLastValOfBackground == value)
+           return model_internal::_doValidationCacheOfBackground ;
+
+        _model.model_internal::_backgroundIsValidCacheInitialized = true;
+        var validationFailures:Array = new Array();
+        var errorMessage:String;
+        var failure:Boolean;
+
+        var valRes:ValidationResult;
+        if (_model.isBackgroundAvailable && _internal_background == null)
+        {
+            validationFailures.push(new ValidationResult(true, "", "", "background is required"));
+        }
+
+        model_internal::_doValidationCacheOfBackground = validationFailures;
+        model_internal::_doValidationLastValOfBackground = value;
+
+        return validationFailures;
+    }
+    
+    model_internal var _doValidationCacheOfStoragevolume : Array = null;
+    model_internal var _doValidationLastValOfStoragevolume : String;
+
+    model_internal function _doValidationForStoragevolume(valueIn:Object):Array
+    {
+        var value : String = valueIn as String;
+
+        if (model_internal::_doValidationCacheOfStoragevolume != null && model_internal::_doValidationLastValOfStoragevolume == value)
+           return model_internal::_doValidationCacheOfStoragevolume ;
+
+        _model.model_internal::_storagevolumeIsValidCacheInitialized = true;
+        var validationFailures:Array = new Array();
+        var errorMessage:String;
+        var failure:Boolean;
+
+        var valRes:ValidationResult;
+        if (_model.isStoragevolumeAvailable && _internal_storagevolume == null)
+        {
+            validationFailures.push(new ValidationResult(true, "", "", "storagevolume is required"));
+        }
+
+        model_internal::_doValidationCacheOfStoragevolume = validationFailures;
+        model_internal::_doValidationLastValOfStoragevolume = value;
+
+        return validationFailures;
+    }
+    
     model_internal var _doValidationCacheOfField : Array = null;
     model_internal var _doValidationLastValOfField : FarmValueObjects.Field_type;
 

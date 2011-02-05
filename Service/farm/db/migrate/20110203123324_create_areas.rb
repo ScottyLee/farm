@@ -4,9 +4,12 @@ class CreateAreas < ActiveRecord::Migration
 
       t.timestamps
       t.column :storage, :int #Если склад не понуменклатурный то судя по всему должно быть так
+      t.column :background, :string
       t.column :inc_button, :string
       t.column :dec_button, :string
       t.column :collect_button, :string
+      t.column :storage_button, :string
+      
     end
   end
 

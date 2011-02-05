@@ -8,6 +8,7 @@ package FarmValueObjects
 import FarmValueObjects.CollectButton_type;
 import FarmValueObjects.DecButton_type;
 import FarmValueObjects.IncButton_type;
+import FarmValueObjects.StorageButton_type;
 import com.adobe.fiber.services.IFiberManagingService;
 import com.adobe.fiber.util.FiberUtils;
 import com.adobe.fiber.valueobjects.IValueObject;
@@ -37,6 +38,7 @@ public class _Super_ToolBox_type extends flash.events.EventDispatcher implements
         FarmValueObjects.IncButton_type.initRemoteClassAliasSingleChild();
         FarmValueObjects.DecButton_type.initRemoteClassAliasSingleChild();
         FarmValueObjects.CollectButton_type.initRemoteClassAliasSingleChild();
+        FarmValueObjects.StorageButton_type.initRemoteClassAliasSingleChild();
     }
 
     model_internal var _dminternal_model : _ToolBox_typeEntityMetadata;
@@ -47,6 +49,7 @@ public class _Super_ToolBox_type extends flash.events.EventDispatcher implements
     private var _internal_IncButton : FarmValueObjects.IncButton_type;
     private var _internal_DecButton : FarmValueObjects.DecButton_type;
     private var _internal_CollectButton : FarmValueObjects.CollectButton_type;
+    private var _internal_StorageButton : FarmValueObjects.StorageButton_type;
 
     private static var emptyArray:Array = new Array();
 
@@ -66,6 +69,7 @@ public class _Super_ToolBox_type extends flash.events.EventDispatcher implements
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "IncButton", model_internal::setterListenerIncButton));
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "DecButton", model_internal::setterListenerDecButton));
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "CollectButton", model_internal::setterListenerCollectButton));
+        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "StorageButton", model_internal::setterListenerStorageButton));
 
     }
 
@@ -89,6 +93,12 @@ public class _Super_ToolBox_type extends flash.events.EventDispatcher implements
     public function get CollectButton() : FarmValueObjects.CollectButton_type
     {
         return _internal_CollectButton;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get StorageButton() : FarmValueObjects.StorageButton_type
+    {
+        return _internal_StorageButton;
     }
 
     /**
@@ -125,6 +135,16 @@ public class _Super_ToolBox_type extends flash.events.EventDispatcher implements
         }
     }
 
+    public function set StorageButton(value:FarmValueObjects.StorageButton_type) : void
+    {
+        var oldValue:FarmValueObjects.StorageButton_type = _internal_StorageButton;
+        if (oldValue !== value)
+        {
+            _internal_StorageButton = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "StorageButton", oldValue, _internal_StorageButton));
+        }
+    }
+
     /**
      * Data property setter listeners
      *
@@ -150,6 +170,11 @@ public class _Super_ToolBox_type extends flash.events.EventDispatcher implements
     model_internal function setterListenerCollectButton(value:flash.events.Event):void
     {
         _model.invalidateDependentOnCollectButton();
+    }
+
+    model_internal function setterListenerStorageButton(value:flash.events.Event):void
+    {
+        _model.invalidateDependentOnStorageButton();
     }
 
 
@@ -187,6 +212,11 @@ public class _Super_ToolBox_type extends flash.events.EventDispatcher implements
         {
             propertyValidity = false;
             com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_CollectButtonValidationFailureMessages);
+        }
+        if (!_model.StorageButtonIsValid)
+        {
+            propertyValidity = false;
+            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_StorageButtonValidationFailureMessages);
         }
 
         model_internal::_cacheInitialized_isValid = true;
@@ -344,6 +374,33 @@ public class _Super_ToolBox_type extends flash.events.EventDispatcher implements
 
         model_internal::_doValidationCacheOfCollectButton = validationFailures;
         model_internal::_doValidationLastValOfCollectButton = value;
+
+        return validationFailures;
+    }
+    
+    model_internal var _doValidationCacheOfStorageButton : Array = null;
+    model_internal var _doValidationLastValOfStorageButton : FarmValueObjects.StorageButton_type;
+
+    model_internal function _doValidationForStorageButton(valueIn:Object):Array
+    {
+        var value : FarmValueObjects.StorageButton_type = valueIn as FarmValueObjects.StorageButton_type;
+
+        if (model_internal::_doValidationCacheOfStorageButton != null && model_internal::_doValidationLastValOfStorageButton == value)
+           return model_internal::_doValidationCacheOfStorageButton ;
+
+        _model.model_internal::_StorageButtonIsValidCacheInitialized = true;
+        var validationFailures:Array = new Array();
+        var errorMessage:String;
+        var failure:Boolean;
+
+        var valRes:ValidationResult;
+        if (_model.isStorageButtonAvailable && _internal_StorageButton == null)
+        {
+            validationFailures.push(new ValidationResult(true, "", "", "StorageButton is required"));
+        }
+
+        model_internal::_doValidationCacheOfStorageButton = validationFailures;
+        model_internal::_doValidationLastValOfStorageButton = value;
 
         return validationFailures;
     }

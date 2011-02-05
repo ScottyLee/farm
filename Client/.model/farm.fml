@@ -54,7 +54,7 @@
         <item name="completeURL">http://localhost:3000/area/getarea?id=1</item>
       </annotation>
       <annotation name="ValidProperties">
-        <item name="propertySpecifier">Field,AreaType,ToolBox</item>
+        <item name="propertySpecifier">background,storagevolume,Field,AreaType,ToolBox</item>
       </annotation>
       <annotation name="Properties">
         <item name="xPath">/</item>
@@ -188,12 +188,27 @@
     </annotation>
     <property name="src" type="string" required="true"/>
   </entity>
+  <entity name="StorageButton_type">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">StorageButton_type</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">FarmService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">FarmValueObjects</item>
+    </annotation>
+    <property name="src" type="string" required="true"/>
+  </entity>
   <entity name="Message">
     <annotation name="EntityProperties">
       <item name="EntityOriginalName">Message_type</item>
     </annotation>
     <annotation name="service Group">
-      <item name="service">FarmService</item>
+      <item name="service">FarmService,FarmServiceDummy</item>
     </annotation>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>
@@ -235,17 +250,19 @@
       <item name="EntityOriginalName">Area_type</item>
     </annotation>
     <annotation name="service Group">
-      <item name="service">FarmService,FarmServiceDummy</item>
+      <item name="service">FarmService</item>
     </annotation>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>
     </annotation>
     <annotation name="getArea">
-      <item name="propertySpecifier">Field,AreaType,ToolBox</item>
+      <item name="propertySpecifier">background,storagevolume,Field,AreaType,ToolBox</item>
     </annotation>
     <annotation name="ActionScriptGeneration">
       <item name="Package">FarmValueObjects</item>
     </annotation>
+    <property name="background" type="string" required="true"/>
+    <property name="storagevolume" type="string" required="true"/>
     <property name="Field" type="Field_type" required="true"/>
     <property name="AreaType" type="AreaType_type" required="true"/>
     <property name="ToolBox" type="ToolBox_type" required="true"/>
@@ -278,7 +295,7 @@
       <item name="EntityOriginalName">Storage_type</item>
     </annotation>
     <annotation name="service Group">
-      <item name="service">FarmService</item>
+      <item name="service">FarmService,FarmServiceDummy</item>
     </annotation>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>
@@ -356,6 +373,21 @@
     </annotation>
     <property name="src" type="string" required="true"/>
   </entity>
+  <entity name="IncButton_type">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">IncButton_type</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">FarmService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">FarmValueObjects</item>
+    </annotation>
+    <property name="src" type="string" required="true"/>
+  </entity>
   <entity name="ToolBox_type">
     <annotation name="EntityProperties">
       <item name="EntityOriginalName">ToolBox_type</item>
@@ -372,20 +404,6 @@
     <property name="IncButton" type="IncButton_type" required="true"/>
     <property name="DecButton" type="DecButton_type" required="true"/>
     <property name="CollectButton" type="CollectButton_type" required="true"/>
-  </entity>
-  <entity name="IncButton_type">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">IncButton_type</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">FarmService</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">FarmValueObjects</item>
-    </annotation>
-    <property name="src" type="string" required="true"/>
+    <property name="StorageButton" type="StorageButton_type" required="true"/>
   </entity>
 </model>

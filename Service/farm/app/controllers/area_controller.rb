@@ -57,6 +57,8 @@ def inst
     @area.inc_button = "http://"+request.host_with_port + "/images/inc.png";
     @area.dec_button = "http://"+request.host_with_port + "/images/dec.png";
     @area.collect_button = "http://"+request.host_with_port + "/images/collect.png";
+    @area.background = "http://"+request.host_with_port + "/images/BG.jpg";
+    @area.storage_button = "http://"+request.host_with_port + "/images/collect.png";
     @area.storage = 0;
     @area.save!();
 
@@ -136,6 +138,7 @@ def plant
     @_item.save();
     @_area.area_items << @_item;
     @_type.area_items << @_item;
+
     doc = Builder::XmlMarkup.new( :target => out_string = "", :indent => 2 )
     doc.AreaItem("id" => @_item[:id], "x" => @_item[:x], "y" => @_item[:y], "item_type_id" => @_item[:item_type_id], "state" => @_item[:state], "maxstate" => @_item[:maxstate]);
     render :xml => out_string;
@@ -150,7 +153,7 @@ end
 def getarea
   @area = Area.find(params[:id]);
   doc = Builder::XmlMarkup.new( :target => out_string = "", :indent => 2 )
-  doc.Area{
+  doc.Area("background" => @area[:background], "storagevolume" => @area[:storage] ){
       doc.Field{
           @area.area_items.each { |element|
           doc.AreaItem("id" => element[:id], "x" => element[:x], "y" => element[:y], "item_type_id" => element[:item_type_id], "state" => element[:state], "maxstate" => element[:maxstate]);
@@ -166,10 +169,11 @@ def getarea
          }
        }
      }
-    doc.ToolBox{
+    doc.ToolBox{#Эти кнопи есть и будут всегда независимо от типов растений
       doc.IncButton("src" => @area[:inc_button]);
       doc.DecButton("src" => @area[:dec_button]);
       doc.CollectButton("src" => @area[:collect_button]);
+      doc.StorageButton("src" => @area[:collect_button]);
     }
   }
   
@@ -183,6 +187,7 @@ def collect
       @item = @_area.area_items.find(params[:item]);
       @item.delete();#SQL Delete тут самое оно ибо ссылки обеспечивались аттрибутами в таблице
       @_area.storage+=1;
+      @_area.save();
       doc = Builder::XmlMarkup.new( :target => out_string = "", :indent => 2 )
       doc.Storage("volume" => @_area[:storage], "lastitem" => params[:item]);
       render :xml => out_string;

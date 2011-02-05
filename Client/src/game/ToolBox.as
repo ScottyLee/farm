@@ -14,6 +14,8 @@ package game
 	import mx.events.DragEvent;
 	import mx.managers.DragManager;
 	
+	import spark.components.Label;
+	
 
 	public class ToolBox extends LayoutContainer
 	{
@@ -22,6 +24,7 @@ package game
 		private var _ItemsDict:Dictionary;
 		private var _ToolBoxData:ToolBox_type;
 		private var _PicCach:PictureCach;
+		private var _StorageLbl:Label;//Это я от нечего делать
 		
 		public function ToolBox(Manager:AreaManager, TargetArea:Area, ToolBoxData:ToolBox_type)
 		{
@@ -36,6 +39,12 @@ package game
 		private function createButtons():void
 		{
 			//Эти три кнопки являются статическими и не зависят от типов элементов поэтому создаются именно так
+			
+			//надпись склада
+			_StorageLbl = new Label();
+			_StorageLbl.text  = "Storage: " + _Manager.StorageVolume.toString();
+			this.addElement(_StorageLbl);
+			
 			//Батон инкремента
 			var _IncButton:ToolBoxItem = new ToolBoxItem(-1, this);
 			_IncButton.setPicture(_PicCach.LoadPicture(this._ToolBoxData.IncButton.src));
@@ -54,8 +63,17 @@ package game
 			this.addElement(_CollectButton);
 			_CollectButton.addEventListener(MouseEvent.CLICK, this._Manager.setCollectItemMode);
 			_CollectButton.alpha = .5;//типа выключен по умолчанию
+			
+
+			
 		}
-	
+		//обновление надписи склада
+		public function updateStorage(Count:int):void
+		{
+			this._StorageLbl.text = "Storage: " + Count.toString();
+		}
+		
+		
 		public function addtype(ToolBoxItemType:ItemType_type):void
 		{
 			trace("Addtype " + ToolBoxItemType.item_type_id );

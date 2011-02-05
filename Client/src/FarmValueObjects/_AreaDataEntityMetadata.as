@@ -22,12 +22,12 @@ internal class _AreaDataEntityMetadata extends com.adobe.fiber.valueobjects.Abst
 {
     private static var emptyArray:Array = new Array();
 
-    model_internal static var allProperties:Array = new Array("Field", "AreaType", "ToolBox");
+    model_internal static var allProperties:Array = new Array("background", "storagevolume", "Field", "AreaType", "ToolBox");
     model_internal static var allAssociationProperties:Array = new Array();
-    model_internal static var allRequiredProperties:Array = new Array("Field", "AreaType", "ToolBox");
-    model_internal static var allAlwaysAvailableProperties:Array = new Array("Field", "AreaType", "ToolBox");
+    model_internal static var allRequiredProperties:Array = new Array("background", "storagevolume", "Field", "AreaType", "ToolBox");
+    model_internal static var allAlwaysAvailableProperties:Array = new Array("background", "storagevolume", "Field", "AreaType", "ToolBox");
     model_internal static var guardedProperties:Array = new Array();
-    model_internal static var dataProperties:Array = new Array("Field", "AreaType", "ToolBox");
+    model_internal static var dataProperties:Array = new Array("background", "storagevolume", "Field", "AreaType", "ToolBox");
     model_internal static var derivedProperties:Array = new Array();
     model_internal static var collectionProperties:Array = new Array();
     model_internal static var collectionBaseMap:Object;
@@ -35,6 +35,16 @@ internal class _AreaDataEntityMetadata extends com.adobe.fiber.valueobjects.Abst
     model_internal static var dependentsOnMap:Object;
     model_internal static var dependedOnServices:Array = new Array();
 
+    
+    model_internal var _backgroundIsValid:Boolean;
+    model_internal var _backgroundValidator:com.adobe.fiber.styles.StyleValidator;
+    model_internal var _backgroundIsValidCacheInitialized:Boolean = false;
+    model_internal var _backgroundValidationFailureMessages:Array;
+    
+    model_internal var _storagevolumeIsValid:Boolean;
+    model_internal var _storagevolumeValidator:com.adobe.fiber.styles.StyleValidator;
+    model_internal var _storagevolumeIsValidCacheInitialized:Boolean = false;
+    model_internal var _storagevolumeValidationFailureMessages:Array;
     
     model_internal var _FieldIsValid:Boolean;
     model_internal var _FieldValidator:com.adobe.fiber.styles.StyleValidator;
@@ -61,6 +71,8 @@ internal class _AreaDataEntityMetadata extends com.adobe.fiber.valueobjects.Abst
         {
             // depenents map
             model_internal::dependentsOnMap = new Object();
+            model_internal::dependentsOnMap["background"] = new Array();
+            model_internal::dependentsOnMap["storagevolume"] = new Array();
             model_internal::dependentsOnMap["Field"] = new Array();
             model_internal::dependentsOnMap["AreaType"] = new Array();
             model_internal::dependentsOnMap["ToolBox"] = new Array();
@@ -70,6 +82,16 @@ internal class _AreaDataEntityMetadata extends com.adobe.fiber.valueobjects.Abst
         }
 
         model_internal::_instance = value;
+        model_internal::_backgroundValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForBackground);
+        model_internal::_backgroundValidator.required = true;
+        model_internal::_backgroundValidator.requiredFieldError = "background is required";
+        //model_internal::_backgroundValidator.source = model_internal::_instance;
+        //model_internal::_backgroundValidator.property = "background";
+        model_internal::_storagevolumeValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForStoragevolume);
+        model_internal::_storagevolumeValidator.required = true;
+        model_internal::_storagevolumeValidator.requiredFieldError = "storagevolume is required";
+        //model_internal::_storagevolumeValidator.source = model_internal::_instance;
+        //model_internal::_storagevolumeValidator.property = "storagevolume";
         model_internal::_FieldValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForField);
         model_internal::_FieldValidator.required = true;
         model_internal::_FieldValidator.requiredFieldError = "Field is required";
@@ -294,6 +316,18 @@ internal class _AreaDataEntityMetadata extends com.adobe.fiber.valueobjects.Abst
     }
 
     [Bindable(event="propertyChange")]
+    public function get isBackgroundAvailable():Boolean
+    {
+        return true;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get isStoragevolumeAvailable():Boolean
+    {
+        return true;
+    }
+
+    [Bindable(event="propertyChange")]
     public function get isFieldAvailable():Boolean
     {
         return true;
@@ -315,6 +349,22 @@ internal class _AreaDataEntityMetadata extends com.adobe.fiber.valueobjects.Abst
     /**
      * derived property recalculation
      */
+    public function invalidateDependentOnBackground():void
+    {
+        if (model_internal::_backgroundIsValidCacheInitialized )
+        {
+            model_internal::_instance.model_internal::_doValidationCacheOfBackground = null;
+            model_internal::calculateBackgroundIsValid();
+        }
+    }
+    public function invalidateDependentOnStoragevolume():void
+    {
+        if (model_internal::_storagevolumeIsValidCacheInitialized )
+        {
+            model_internal::_instance.model_internal::_doValidationCacheOfStoragevolume = null;
+            model_internal::calculateStoragevolumeIsValid();
+        }
+    }
     public function invalidateDependentOnField():void
     {
         if (model_internal::_FieldIsValidCacheInitialized )
@@ -343,6 +393,206 @@ internal class _AreaDataEntityMetadata extends com.adobe.fiber.valueobjects.Abst
     model_internal function fireChangeEvent(propertyName:String, oldValue:Object, newValue:Object):void
     {
         this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, propertyName, oldValue, newValue));
+    }
+
+    [Bindable(event="propertyChange")]   
+    public function get backgroundStyle():com.adobe.fiber.styles.Style
+    {
+        return model_internal::_nullStyle;
+    }
+
+    public function get backgroundValidator() : StyleValidator
+    {
+        return model_internal::_backgroundValidator;
+    }
+
+    model_internal function set _backgroundIsValid_der(value:Boolean):void 
+    {
+        var oldValue:Boolean = model_internal::_backgroundIsValid;         
+        if (oldValue !== value)
+        {
+            model_internal::_backgroundIsValid = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "backgroundIsValid", oldValue, value));
+        }                             
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get backgroundIsValid():Boolean
+    {
+        if (!model_internal::_backgroundIsValidCacheInitialized)
+        {
+            model_internal::calculateBackgroundIsValid();
+        }
+
+        return model_internal::_backgroundIsValid;
+    }
+
+    model_internal function calculateBackgroundIsValid():void
+    {
+        var valRes:ValidationResultEvent = model_internal::_backgroundValidator.validate(model_internal::_instance.background)
+        model_internal::_backgroundIsValid_der = (valRes.results == null);
+        model_internal::_backgroundIsValidCacheInitialized = true;
+        if (valRes.results == null)
+             model_internal::backgroundValidationFailureMessages_der = emptyArray;
+        else
+        {
+            var _valFailures:Array = new Array();
+            for (var a:int = 0 ; a<valRes.results.length ; a++)
+            {
+                _valFailures.push(valRes.results[a].errorMessage);
+            }
+            model_internal::backgroundValidationFailureMessages_der = _valFailures;
+        }
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get backgroundValidationFailureMessages():Array
+    {
+        if (model_internal::_backgroundValidationFailureMessages == null)
+            model_internal::calculateBackgroundIsValid();
+
+        return _backgroundValidationFailureMessages;
+    }
+
+    model_internal function set backgroundValidationFailureMessages_der(value:Array) : void
+    {
+        var oldValue:Array = model_internal::_backgroundValidationFailureMessages;
+
+        var needUpdate : Boolean = false;
+        if (oldValue == null)
+            needUpdate = true;
+    
+        // avoid firing the event when old and new value are different empty arrays
+        if (!needUpdate && (oldValue !== value && (oldValue.length > 0 || value.length > 0)))
+        {
+            if (oldValue.length == value.length)
+            {
+                for (var a:int=0; a < oldValue.length; a++)
+                {
+                    if (oldValue[a] !== value[a])
+                    {
+                        needUpdate = true;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                needUpdate = true;
+            }
+        }
+
+        if (needUpdate)
+        {
+            model_internal::_backgroundValidationFailureMessages = value;   
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "backgroundValidationFailureMessages", oldValue, value));
+            // Only execute calculateIsValid if it has been called before, to update the validationFailureMessages for
+            // the entire entity.
+            if (model_internal::_instance.model_internal::_cacheInitialized_isValid)
+            {
+                model_internal::_instance.model_internal::isValid_der = model_internal::_instance.model_internal::calculateIsValid();
+            }
+        }
+    }
+
+    [Bindable(event="propertyChange")]   
+    public function get storagevolumeStyle():com.adobe.fiber.styles.Style
+    {
+        return model_internal::_nullStyle;
+    }
+
+    public function get storagevolumeValidator() : StyleValidator
+    {
+        return model_internal::_storagevolumeValidator;
+    }
+
+    model_internal function set _storagevolumeIsValid_der(value:Boolean):void 
+    {
+        var oldValue:Boolean = model_internal::_storagevolumeIsValid;         
+        if (oldValue !== value)
+        {
+            model_internal::_storagevolumeIsValid = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "storagevolumeIsValid", oldValue, value));
+        }                             
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get storagevolumeIsValid():Boolean
+    {
+        if (!model_internal::_storagevolumeIsValidCacheInitialized)
+        {
+            model_internal::calculateStoragevolumeIsValid();
+        }
+
+        return model_internal::_storagevolumeIsValid;
+    }
+
+    model_internal function calculateStoragevolumeIsValid():void
+    {
+        var valRes:ValidationResultEvent = model_internal::_storagevolumeValidator.validate(model_internal::_instance.storagevolume)
+        model_internal::_storagevolumeIsValid_der = (valRes.results == null);
+        model_internal::_storagevolumeIsValidCacheInitialized = true;
+        if (valRes.results == null)
+             model_internal::storagevolumeValidationFailureMessages_der = emptyArray;
+        else
+        {
+            var _valFailures:Array = new Array();
+            for (var a:int = 0 ; a<valRes.results.length ; a++)
+            {
+                _valFailures.push(valRes.results[a].errorMessage);
+            }
+            model_internal::storagevolumeValidationFailureMessages_der = _valFailures;
+        }
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get storagevolumeValidationFailureMessages():Array
+    {
+        if (model_internal::_storagevolumeValidationFailureMessages == null)
+            model_internal::calculateStoragevolumeIsValid();
+
+        return _storagevolumeValidationFailureMessages;
+    }
+
+    model_internal function set storagevolumeValidationFailureMessages_der(value:Array) : void
+    {
+        var oldValue:Array = model_internal::_storagevolumeValidationFailureMessages;
+
+        var needUpdate : Boolean = false;
+        if (oldValue == null)
+            needUpdate = true;
+    
+        // avoid firing the event when old and new value are different empty arrays
+        if (!needUpdate && (oldValue !== value && (oldValue.length > 0 || value.length > 0)))
+        {
+            if (oldValue.length == value.length)
+            {
+                for (var a:int=0; a < oldValue.length; a++)
+                {
+                    if (oldValue[a] !== value[a])
+                    {
+                        needUpdate = true;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                needUpdate = true;
+            }
+        }
+
+        if (needUpdate)
+        {
+            model_internal::_storagevolumeValidationFailureMessages = value;   
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "storagevolumeValidationFailureMessages", oldValue, value));
+            // Only execute calculateIsValid if it has been called before, to update the validationFailureMessages for
+            // the entire entity.
+            if (model_internal::_instance.model_internal::_cacheInitialized_isValid)
+            {
+                model_internal::_instance.model_internal::isValid_der = model_internal::_instance.model_internal::calculateIsValid();
+            }
+        }
     }
 
     [Bindable(event="propertyChange")]   
@@ -670,6 +920,14 @@ internal class _AreaDataEntityMetadata extends com.adobe.fiber.valueobjects.Abst
      {
          switch(propertyName)
          {
+            case("background"):
+            {
+                return backgroundValidationFailureMessages;
+            }
+            case("storagevolume"):
+            {
+                return storagevolumeValidationFailureMessages;
+            }
             case("Field"):
             {
                 return FieldValidationFailureMessages;
