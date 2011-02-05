@@ -10,22 +10,14 @@
 			import mx.controls.Alert;
 			import mx.controls.Image;
 			import mx.core.LayoutContainer;
-			
-			import spark.components.Scroller;
 			function main():void
 			{
-				var _Scroller:Scroller = new Scroller();
-				_Scroller.width = 300;
-				_Scroller.height= 300;
-				this.addElement(_Scroller);
-				
 				var _Area:Area = new Area();
 				_Area.x = 0;
 				_Area.y = 0;
 				_Area.width = this.width;
 				_Area.height = this.height;
-				_Scroller.addElement(_Area);
-				//this.addElement(_Area);
+				this.addElement(_Area);
 			}
 			
 		]]>
