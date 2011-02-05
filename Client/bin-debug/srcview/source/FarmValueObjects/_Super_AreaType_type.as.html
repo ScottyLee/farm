@@ -1,0 +1,271 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>_Super_AreaType_type.as</title>
+<link rel="stylesheet" type="text/css" href="../../SourceStyles.css"/>
+</head>
+
+<body><pre><span class="ActionScriptASDoc">/**
+ * This is a generated class and is not intended for modification.  To customize behavior
+ * of this value object you may modify the generated sub-class of this class - AreaType_type.as.
+ */</span>
+
+<span class="ActionScriptpackage">package</span> <span class="ActionScriptDefault_Text">FarmValueObjects</span>
+<span class="ActionScriptBracket/Brace">{</span>
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">FarmValueObjects</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ItemType_type</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">adobe</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">fiber</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">services</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">IFiberManagingService</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">adobe</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">fiber</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">util</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">FiberUtils</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">adobe</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">fiber</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">valueobjects</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">IValueObject</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">Event</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">EventDispatcher</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">binding</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">utils</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ChangeWatcher</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">collections</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ArrayCollection</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">CollectionEvent</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">PropertyChangeEvent</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">validators</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ValidationResult</span>;
+
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">net</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">registerClassAlias</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">net</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">getClassByAlias</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">adobe</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">fiber</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">core</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">model_internal</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">adobe</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">fiber</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">valueobjects</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">IPropertyIterator</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">adobe</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">fiber</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">valueobjects</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">AvailablePropertyIterator</span>;
+
+<span class="ActionScriptReserved">use</span> <span class="ActionScriptReserved">namespace</span> <span class="ActionScriptDefault_Text">model_internal</span>;
+
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">ExcludeClass</span><span class="ActionScriptBracket/Brace">]</span><span class="ActionScriptReserved">public</span> <span class="ActionScriptclass">class</span> <span class="ActionScriptDefault_Text">_Super_AreaType_type</span> <span class="ActionScriptReserved">extends</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">EventDispatcher</span> <span class="ActionScriptReserved">implements</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">adobe</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">fiber</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">valueobjects</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">IValueObject</span>
+<span class="ActionScriptBracket/Brace">{</span>
+    <span class="ActionScriptDefault_Text">model_internal</span> <span class="ActionScriptReserved">static</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">initRemoteClassAliasSingle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">cz</span>:<span class="ActionScriptDefault_Text">Class</span><span class="ActionScriptBracket/Brace">)</span> : <span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+    <span class="ActionScriptBracket/Brace">}</span>
+
+    <span class="ActionScriptDefault_Text">model_internal</span> <span class="ActionScriptReserved">static</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">initRemoteClassAliasAllRelated</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span> : <span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptDefault_Text">FarmValueObjects</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ItemType_type</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">initRemoteClassAliasSingleChild</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptDefault_Text">FarmValueObjects</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">TypePic_type</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">initRemoteClassAliasSingleChild</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+
+    <span class="ActionScriptDefault_Text">model_internal</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_dminternal_model</span> : <span class="ActionScriptDefault_Text">_AreaType_typeEntityMetadata</span>;
+
+    <span class="ActionScriptASDoc">/**
+     * properties
+     */</span>
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_internal_ItemType</span> : <span class="ActionScriptDefault_Text">ArrayCollection</span>;
+    <span class="ActionScriptDefault_Text">model_internal</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_internal_ItemType_leaf</span>:<span class="ActionScriptDefault_Text">FarmValueObjects</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ItemType_type</span>;
+
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptReserved">static</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">emptyArray</span>:<span class="ActionScriptDefault_Text">Array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">Array</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+
+
+    <span class="ActionScriptASDoc">/**
+     * derived property cache initialization
+     */</span>
+    <span class="ActionScriptDefault_Text">model_internal</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_cacheInitialized_isValid</span>:<span class="ActionScriptDefault_Text">Boolean</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">false</span>;
+
+    <span class="ActionScriptDefault_Text">model_internal</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_changeWatcherArray</span>:<span class="ActionScriptDefault_Text">Array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">Array</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">_Super_AreaType_type</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptDefault_Text">_model</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">_AreaType_typeEntityMetadata</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptReserved">this</span><span class="ActionScriptBracket/Brace">)</span>;
+
+        <span class="ActionScriptComment">// Bind to own data properties for cache invalidation triggering
+</span>        <span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">_changeWatcherArray</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">push</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">binding</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">utils</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ChangeWatcher</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">watch</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptReserved">this</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptString">"ItemType"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">setterListenerItemType</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+
+    <span class="ActionScriptBracket/Brace">}</span>
+
+    <span class="ActionScriptASDoc">/**
+     * data property getters
+     */</span>
+
+    <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Bindable</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"propertyChange"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">ItemType</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span> : <span class="ActionScriptDefault_Text">ArrayCollection</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">_internal_ItemType</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+
+    <span class="ActionScriptASDoc">/**
+     * data property setters
+     */</span>
+
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">ItemType</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptOperator">*</span><span class="ActionScriptBracket/Brace">)</span> : <span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">oldValue</span>:<span class="ActionScriptDefault_Text">ArrayCollection</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">_internal_ItemType</span>;
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">oldValue</span> <span class="ActionScriptOperator">!==</span> <span class="ActionScriptDefault_Text">value</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span> <span class="ActionScriptReserved">is</span> <span class="ActionScriptDefault_Text">ArrayCollection</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptDefault_Text">_internal_ItemType</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+            <span class="ActionScriptReserved">else</span> <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span> <span class="ActionScriptReserved">is</span> <span class="ActionScriptDefault_Text">Array</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptDefault_Text">_internal_ItemType</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ArrayCollection</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+            <span class="ActionScriptReserved">else</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptReserved">throw</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">Error</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"value of ItemType must be a collection"</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+            <span class="ActionScriptReserved">this</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">dispatchEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">PropertyChangeEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">createUpdateEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptReserved">this</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptString">"ItemType"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">oldValue</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">_internal_ItemType</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+    <span class="ActionScriptBracket/Brace">}</span>
+
+    <span class="ActionScriptASDoc">/**
+     * Data property setter listeners
+     *
+     * Each data property whose value affects other properties or the validity of the entity
+     * needs to invalidate all previously calculated artifacts. These include:
+     *  - any derived properties or constraints that reference the given data property.
+     *  - any availability guards (variant expressions) that reference the given data property.
+     *  - any style validations, message tokens or guards that reference the given data property.
+     *  - the validity of the property (and the containing entity) if the given data property has a length restriction.
+     *  - the validity of the property (and the containing entity) if the given data property is required.
+     */</span>
+
+    <span class="ActionScriptDefault_Text">model_internal</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">setterListenerItemType</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">Event</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span> <span class="ActionScriptReserved">is</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">PropertyChangeEvent</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">PropertyChangeEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">newValue</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">PropertyChangeEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">newValue</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">CollectionEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">COLLECTION_CHANGE</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">setterListenerItemType</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptDefault_Text">_model</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">invalidateDependentOnItemType</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+
+
+    <span class="ActionScriptASDoc">/**
+     * valid related derived properties
+     */</span>
+    <span class="ActionScriptDefault_Text">model_internal</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_isValid</span> : <span class="ActionScriptDefault_Text">Boolean</span>;
+    <span class="ActionScriptDefault_Text">model_internal</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_invalidConstraints</span>:<span class="ActionScriptDefault_Text">Array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">Array</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptDefault_Text">model_internal</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_validationFailureMessages</span>:<span class="ActionScriptDefault_Text">Array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">Array</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+
+    <span class="ActionScriptASDoc">/**
+     * derived property calculators
+     */</span>
+
+    <span class="ActionScriptASDoc">/**
+     * isValid calculator
+     */</span>
+    <span class="ActionScriptDefault_Text">model_internal</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">calculateIsValid</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">Boolean</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">violatedConsts</span>:<span class="ActionScriptDefault_Text">Array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">Array</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">validationFailureMessages</span>:<span class="ActionScriptDefault_Text">Array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">Array</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+
+        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">propertyValidity</span>:<span class="ActionScriptDefault_Text">Boolean</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">true</span>;
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptOperator">!</span><span class="ActionScriptDefault_Text">_model</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ItemTypeIsValid</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">propertyValidity</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">false</span>;
+            <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">adobe</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">fiber</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">util</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">FiberUtils</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">arrayAdd</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">validationFailureMessages</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">_model</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">_ItemTypeValidationFailureMessages</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+
+        <span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">_cacheInitialized_isValid</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">true</span>;
+        <span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">invalidConstraints_der</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">violatedConsts</span>;
+        <span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">validationFailureMessages_der</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">validationFailureMessages</span>;
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">violatedConsts</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">length</span> <span class="ActionScriptOperator">==</span> 0 <span class="ActionScriptOperator">&amp;&amp;</span> <span class="ActionScriptDefault_Text">propertyValidity</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+
+    <span class="ActionScriptASDoc">/**
+     * derived property setters
+     */</span>
+
+    <span class="ActionScriptDefault_Text">model_internal</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">isValid_der</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">Boolean</span><span class="ActionScriptBracket/Brace">)</span> : <span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">oldValue</span>:<span class="ActionScriptDefault_Text">Boolean</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">_isValid</span>;
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">oldValue</span> <span class="ActionScriptOperator">!==</span> <span class="ActionScriptDefault_Text">value</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">_isValid</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+            <span class="ActionScriptDefault_Text">_model</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">fireChangeEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"isValid"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">oldValue</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">_isValid</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+    <span class="ActionScriptBracket/Brace">}</span>
+
+    <span class="ActionScriptASDoc">/**
+     * derived property getters
+     */</span>
+
+    <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Transient</span><span class="ActionScriptBracket/Brace">]</span><span class="ActionScriptMetadata">Bindable</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"propertyChange"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">_model</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span> : <span class="ActionScriptDefault_Text">_AreaType_typeEntityMetadata</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">_dminternal_model</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">_model</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span> : <span class="ActionScriptDefault_Text">_AreaType_typeEntityMetadata</span><span class="ActionScriptBracket/Brace">)</span> : <span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">oldValue</span> : <span class="ActionScriptDefault_Text">_AreaType_typeEntityMetadata</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">_dminternal_model</span>;
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">oldValue</span> <span class="ActionScriptOperator">!==</span> <span class="ActionScriptDefault_Text">value</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">_dminternal_model</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+            <span class="ActionScriptReserved">this</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">dispatchEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">PropertyChangeEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">createUpdateEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptReserved">this</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptString">"_model"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">oldValue</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">_dminternal_model</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+    <span class="ActionScriptBracket/Brace">}</span>
+
+    <span class="ActionScriptASDoc">/**
+     * methods
+     */</span>
+
+
+    <span class="ActionScriptASDoc">/**
+     *  services
+     */</span>
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_managingService</span>:<span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">adobe</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">fiber</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">services</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">IFiberManagingService</span>;
+
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">managingService</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">managingService</span>:<span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">adobe</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">fiber</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">services</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">IFiberManagingService</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptDefault_Text">_managingService</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">managingService</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+
+    <span class="ActionScriptDefault_Text">model_internal</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">invalidConstraints_der</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">Array</span><span class="ActionScriptBracket/Brace">)</span> : <span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">oldValue</span>:<span class="ActionScriptDefault_Text">Array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">_invalidConstraints</span>;
+        <span class="ActionScriptComment">// avoid firing the event when old and new value are different empty arrays
+</span>        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">oldValue</span> <span class="ActionScriptOperator">!==</span> <span class="ActionScriptDefault_Text">value</span> <span class="ActionScriptOperator">&amp;&amp;</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">oldValue</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">length</span> <span class="ActionScriptOperator">&gt;</span> 0 <span class="ActionScriptOperator">||</span> <span class="ActionScriptDefault_Text">value</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">length</span> <span class="ActionScriptOperator">&gt;</span> 0<span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">_invalidConstraints</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+            <span class="ActionScriptDefault_Text">_model</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">fireChangeEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"invalidConstraints"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">oldValue</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">_invalidConstraints</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+    <span class="ActionScriptBracket/Brace">}</span>
+
+    <span class="ActionScriptDefault_Text">model_internal</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">validationFailureMessages_der</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">Array</span><span class="ActionScriptBracket/Brace">)</span> : <span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">oldValue</span>:<span class="ActionScriptDefault_Text">Array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">_validationFailureMessages</span>;
+        <span class="ActionScriptComment">// avoid firing the event when old and new value are different empty arrays
+</span>        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">oldValue</span> <span class="ActionScriptOperator">!==</span> <span class="ActionScriptDefault_Text">value</span> <span class="ActionScriptOperator">&amp;&amp;</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">oldValue</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">length</span> <span class="ActionScriptOperator">&gt;</span> 0 <span class="ActionScriptOperator">||</span> <span class="ActionScriptDefault_Text">value</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">length</span> <span class="ActionScriptOperator">&gt;</span> 0<span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">_validationFailureMessages</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+            <span class="ActionScriptDefault_Text">_model</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">fireChangeEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"validationFailureMessages"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">oldValue</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">_validationFailureMessages</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+    <span class="ActionScriptBracket/Brace">}</span>
+
+    <span class="ActionScriptDefault_Text">model_internal</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_doValidationCacheOfItemType</span> : <span class="ActionScriptDefault_Text">Array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">null</span>;
+    <span class="ActionScriptDefault_Text">model_internal</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_doValidationLastValOfItemType</span> : <span class="ActionScriptDefault_Text">ArrayCollection</span>;
+
+    <span class="ActionScriptDefault_Text">model_internal</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">_doValidationForItemType</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">valueIn</span>:<span class="ActionScriptDefault_Text">Object</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">Array</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">value</span> : <span class="ActionScriptDefault_Text">ArrayCollection</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">valueIn</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">ArrayCollection</span>;
+
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">_doValidationCacheOfItemType</span> <span class="ActionScriptOperator">!=</span> <span class="ActionScriptReserved">null</span> <span class="ActionScriptOperator">&amp;&amp;</span> <span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">_doValidationLastValOfItemType</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">value</span><span class="ActionScriptBracket/Brace">)</span>
+           <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">_doValidationCacheOfItemType</span> ;
+
+        <span class="ActionScriptDefault_Text">_model</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">_ItemTypeIsValidCacheInitialized</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">true</span>;
+        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">validationFailures</span>:<span class="ActionScriptDefault_Text">Array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">Array</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">errorMessage</span>:<span class="ActionScriptDefault_Text">String</span>;
+        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">failure</span>:<span class="ActionScriptDefault_Text">Boolean</span>;
+
+        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">valRes</span>:<span class="ActionScriptDefault_Text">ValidationResult</span>;
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_model</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">isItemTypeAvailable</span> <span class="ActionScriptOperator">&amp;&amp;</span> <span class="ActionScriptDefault_Text">_internal_ItemType</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptReserved">null</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">validationFailures</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">push</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ValidationResult</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptReserved">true</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptString">""</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptString">""</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptString">"ItemType is required"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+
+        <span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">_doValidationCacheOfItemType</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">validationFailures</span>;
+        <span class="ActionScriptDefault_Text">model_internal</span><span class="ActionScriptOperator">::</span><span class="ActionScriptDefault_Text">_doValidationLastValOfItemType</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">validationFailures</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+
+<span class="ActionScriptBracket/Brace">}</span>
+
+<span class="ActionScriptBracket/Brace">}</span>
+</pre></body>
+</html>

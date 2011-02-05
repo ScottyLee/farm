@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index>
+	<title>Исходный код farm</title>
+	<nodes>
+		<node label="html-template">
+			<node label="history">
+				<node icon="cssIcon" label="history.css" url="source/html-template/history/history.css.html"/>
+				<node label="history.js" url="source/html-template/history/history.js.txt"/>
+				<node icon="htmlIcon" label="historyFrame.html" url="source/html-template/history/historyFrame.html"/>
+			</node>
+			<node icon="htmlIcon" label="index.template.html" url="source/html-template/index.template.html"/>
+			<node icon="swfIcon" label="playerProductInstall.swf" url="source/html-template/playerProductInstall.swf"/>
+			<node label="swfobject.js" url="source/html-template/swfobject.js.txt"/>
+		</node>
+		<node label="libs">
+		</node>
+		<node label="src">
+			<node icon="packageIcon" label="FarmValueObjects" expanded="true">
+				<node icon="actionScriptIcon" label="_AreaDataEntityMetadata.as" url="source/FarmValueObjects/_AreaDataEntityMetadata.as.html"/>
+				<node icon="actionScriptIcon" label="_AreaItem_typeEntityMetadata.as" url="source/FarmValueObjects/_AreaItem_typeEntityMetadata.as.html"/>
+				<node icon="actionScriptIcon" label="_AreaType_typeEntityMetadata.as" url="source/FarmValueObjects/_AreaType_typeEntityMetadata.as.html"/>
+				<node icon="actionScriptIcon" label="_CollectButton_typeEntityMetadata.as" url="source/FarmValueObjects/_CollectButton_typeEntityMetadata.as.html"/>
+				<node icon="actionScriptIcon" label="_DecButton_typeEntityMetadata.as" url="source/FarmValueObjects/_DecButton_typeEntityMetadata.as.html"/>
+				<node icon="actionScriptIcon" label="_Field_typeEntityMetadata.as" url="source/FarmValueObjects/_Field_typeEntityMetadata.as.html"/>
+				<node icon="actionScriptIcon" label="_IncButton_typeEntityMetadata.as" url="source/FarmValueObjects/_IncButton_typeEntityMetadata.as.html"/>
+				<node icon="actionScriptIcon" label="_ItemType_typeEntityMetadata.as" url="source/FarmValueObjects/_ItemType_typeEntityMetadata.as.html"/>
+				<node icon="actionScriptIcon" label="_MessageEntityMetadata.as" url="source/FarmValueObjects/_MessageEntityMetadata.as.html"/>
+				<node icon="actionScriptIcon" label="_Status_typeEntityMetadata.as" url="source/FarmValueObjects/_Status_typeEntityMetadata.as.html"/>
+				<node icon="actionScriptIcon" label="_StorageEntityMetadata.as" url="source/FarmValueObjects/_StorageEntityMetadata.as.html"/>
+				<node icon="actionScriptIcon" label="_Super_AreaData.as" url="source/FarmValueObjects/_Super_AreaData.as.html"/>
+				<node icon="actionScriptIcon" label="_Super_AreaItem_type.as" url="source/FarmValueObjects/_Super_AreaItem_type.as.html"/>
+				<node icon="actionScriptIcon" label="_Super_AreaType_type.as" url="source/FarmValueObjects/_Super_AreaType_type.as.html"/>
+				<node icon="actionScriptIcon" label="_Super_CollectButton_type.as" url="source/FarmValueObjects/_Super_CollectButton_type.as.html"/>
+				<node icon="actionScriptIcon" label="_Super_DecButton_type.as" url="source/FarmValueObjects/_Super_DecButton_type.as.html"/>
+				<node icon="actionScriptIcon" label="_Super_Field_type.as" url="source/FarmValueObjects/_Super_Field_type.as.html"/>
+				<node icon="actionScriptIcon" label="_Super_IncButton_type.as" url="source/FarmValueObjects/_Super_IncButton_type.as.html"/>
+				<node icon="actionScriptIcon" label="_Super_ItemType_type.as" url="source/FarmValueObjects/_Super_ItemType_type.as.html"/>
+				<node icon="actionScriptIcon" label="_Super_Message.as" url="source/FarmValueObjects/_Super_Message.as.html"/>
+				<node icon="actionScriptIcon" label="_Super_Status_type.as" url="source/FarmValueObjects/_Super_Status_type.as.html"/>
+				<node icon="actionScriptIcon" label="_Super_Storage.as" url="source/FarmValueObjects/_Super_Storage.as.html"/>
+				<node icon="actionScriptIcon" label="_Super_ToolBox_type.as" url="source/FarmValueObjects/_Super_ToolBox_type.as.html"/>
+				<node icon="actionScriptIcon" label="_Super_TypePic_type.as" url="source/FarmValueObjects/_Super_TypePic_type.as.html"/>
+				<node icon="actionScriptIcon" label="_ToolBox_typeEntityMetadata.as" url="source/FarmValueObjects/_ToolBox_typeEntityMetadata.as.html"/>
+				<node icon="actionScriptIcon" label="_TypePic_typeEntityMetadata.as" url="source/FarmValueObjects/_TypePic_typeEntityMetadata.as.html"/>
+				<node icon="actionScriptIcon" label="AreaData.as" url="source/FarmValueObjects/AreaData.as.html"/>
+				<node icon="actionScriptIcon" label="AreaItem_type.as" url="source/FarmValueObjects/AreaItem_type.as.html"/>
+				<node icon="actionScriptIcon" label="AreaType_type.as" url="source/FarmValueObjects/AreaType_type.as.html"/>
+				<node icon="actionScriptIcon" label="CollectButton_type.as" url="source/FarmValueObjects/CollectButton_type.as.html"/>
+				<node icon="actionScriptIcon" label="DecButton_type.as" url="source/FarmValueObjects/DecButton_type.as.html"/>
+				<node icon="actionScriptIcon" label="Field_type.as" url="source/FarmValueObjects/Field_type.as.html"/>
+				<node icon="actionScriptIcon" label="IncButton_type.as" url="source/FarmValueObjects/IncButton_type.as.html"/>
+				<node icon="actionScriptIcon" label="ItemType_type.as" url="source/FarmValueObjects/ItemType_type.as.html"/>
+				<node icon="actionScriptIcon" label="Message.as" url="source/FarmValueObjects/Message.as.html"/>
+				<node icon="actionScriptIcon" label="Status_type.as" url="source/FarmValueObjects/Status_type.as.html"/>
+				<node icon="actionScriptIcon" label="Storage.as" url="source/FarmValueObjects/Storage.as.html"/>
+				<node icon="actionScriptIcon" label="ToolBox_type.as" url="source/FarmValueObjects/ToolBox_type.as.html"/>
+				<node icon="actionScriptIcon" label="TypePic_type.as" url="source/FarmValueObjects/TypePic_type.as.html"/>
+			</node>
+			<node icon="packageIcon" label="game" expanded="true">
+				<node icon="actionScriptIcon" label="Area.as" url="source/game/Area.as.html"/>
+				<node icon="actionScriptIcon" label="AreaItem.as" url="source/game/AreaItem.as.html"/>
+				<node icon="actionScriptIcon" label="AreaItemType.as" url="source/game/AreaItemType.as.html"/>
+				<node icon="actionScriptIcon" label="AreaManager.as" url="source/game/AreaManager.as.html"/>
+				<node icon="actionScriptIcon" label="PictureCach.as" url="source/game/PictureCach.as.html"/>
+				<node icon="actionScriptIcon" label="ToolBox.as" url="source/game/ToolBox.as.html"/>
+				<node icon="actionScriptIcon" label="ToolBoxItem.as" url="source/game/ToolBoxItem.as.html"/>
+			</node>
+			<node icon="packageIcon" label="services.farmservice" expanded="true">
+				<node icon="actionScriptIcon" label="_Super_FarmService.as" url="source/services/farmservice/_Super_FarmService.as.html"/>
+				<node icon="actionScriptIcon" label="FarmService.as" url="source/services/farmservice/FarmService.as.html"/>
+			</node>
+			<node icon="mxmlAppIcon" selected="true" label="farm.mxml" url="source/farm.mxml.html"/>
+		</node>
+	</nodes>
+	<zipfile label="Загрузить исходный код (ZIP, 105 Кб)" url="farm.zip">
+	</zipfile>
+	<sdklink label="Загрузить Flex SDK" url="http://www.adobe.com/go/flex4_sdk_download_ru_RU">
+	</sdklink>
+</index>
